@@ -1,0 +1,51 @@
+# Sonarr pour YunoHost
+
+[![Niveau d'intégration](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)  
+[![Installer Sonarr avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
+
+*[Read this readme in english.](./README.md)*
+*[Lire ce readme en français.](./README_fr.md)*
+
+> *Ce package vous permet d'installer Sonarr rapidement et simplement sur un serveur YunoHost.
+Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+
+## Vue d'ensemble
+
+Un gestionnaire de collection de séries pour utilisateurs de Usenet et BitTorrent.
+
+**Version incluse :** 3.0.6.1196~ynh1
+
+
+
+## Captures d'écran
+
+![](./doc/screenshots/screenshot.jpg)
+
+## Avertissements / informations importantes
+
+* Le dépôt des développeurs de Sonarr ne permet de télécharger que la toute dernière version.
+  * La version annoncée ici peut être différente de celle réellement installée.
+* Les architectures compatibles sont `arm`, `armhf`, `arm64`, et `amd64`
+* Le contrôle de l'accès se fait avec le système de permissions de YunoHost.
+  * L'API (`domain.tld/path/api`) est accessible aux visiteurs pour permettre le contrôle via des clients externes.
+
+## Documentations et ressources
+
+* Site officiel de l'app : https://sonarr.tv
+* Documentation officielle de l'admin : https://wiki.servarr.com/Sonarr
+* Dépôt de code officiel de l'app : https://github.com/Sonarr/Sonarr
+* Documentation YunoHost pour cette app : https://yunohost.org/app_sonarr
+* Signaler un bug : https://github.com/YunoHost-Apps/sonarr_ynh/issues
+
+## Informations pour les développeurs
+
+Merci de faire vos pull request sur la [branche testing](https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing).
+
+Pour essayer la branche testing, procédez comme suit.
+```
+sudo yunohost app install https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing --debug
+ou
+sudo yunohost app upgrade sonarr -u https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing --debug
+```
+
+**Plus d'infos sur le packaging d'applications :** https://yunohost.org/packaging_apps

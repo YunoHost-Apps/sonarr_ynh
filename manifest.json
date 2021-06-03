@@ -1,0 +1,51 @@
+{
+    "name": "Sonarr",
+    "id": "sonarr",
+    "packaging_format": 1,
+    "description": {
+        "en": "A series collection manager for Usenet and BitTorrent users.",
+        "fr": "Un gestionnaire de collection de séries pour utilisateurs de Usenet et BitTorrent."
+    },
+    "version": "3.0.6.1196~ynh1",
+    "url": "https://sonarr.tv",
+    "upstream": {
+        "license": "GPL-3.0-only",
+        "website": "https://sonarr.tv",
+        "admindoc": "https://wiki.servarr.com/Sonarr",
+        "code": "https://github.com/Sonarr/Sonarr"
+    },
+    "license": "GPL-3.0-only",
+    "maintainer": {
+        "name": "tituspijean",
+        "email": "tituspijean@outlook.com"
+    },
+    "requirements": {
+        "yunohost": ">= 4.1.3"
+    },
+    "multi_instance": true,
+    "services": [
+        "nginx",
+        "php7.3-fpm",
+        "mysql"
+    ],
+    "arguments": {
+        "install" : [
+            {
+                "name": "domain",
+                "type": "domain",
+                "example": "example.com"
+            },
+            {
+                "name": "path",
+                "type": "path",
+                "example": "/sonarr",
+                "default": "/sonarr"
+            },
+            {
+                "name": "admin",
+                "type": "user",
+                "example": "johndoe"
+            }
+        ]
+    }
+}

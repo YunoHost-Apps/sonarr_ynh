@@ -1,0 +1,17 @@
+[Unit]
+Description=Sonarr Daemon
+After=network.target
+
+[Service]
+User=__APP__
+Group=__APP__
+UMask=0002
+
+Type=simple
+ExecStart=/usr/bin/mono --debug /usr/lib/sonarr/bin/Sonarr.exe -nobrowser -data=/var/lib/__APP__
+TimeoutStopSec=20
+KillMode=process
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
