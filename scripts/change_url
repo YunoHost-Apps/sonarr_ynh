@@ -108,7 +108,7 @@ fi
 # UPDATE CONFIGURATION FILE
 #=================================================
 
-ynh_add_config --template="../conf/config.xml" --destination="$final_path/config.xml"
+ynh_exec_warn_less 'ynh_add_config --template="../conf/config.xml" --destination="$final_path/config.xml"'
 
 mkdir -p "$final_path"
 chmod 750 "$final_path"
