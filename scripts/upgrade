@@ -120,7 +120,7 @@ ynh_use_logrotate --non-append --logfile="$final_path/logs"
 #=================================================
 ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
 
-yunohost service add $app --description="Radarr daemon" --log="$final_path/logs/sonarr.txt"
+yunohost service add $app --description="Sonarr daemon" --log="$final_path/logs/sonarr.txt"
 
 #=================================================
 # START SYSTEMD SERVICE
