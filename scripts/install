@@ -67,9 +67,9 @@ ynh_app_setting_set --app=$app --key=port --value=$port
 #=================================================
 ynh_script_progression --message="Installing dependencies..." --weight=4
 
-ynh_install_extra_app_dependencies --repo="https://download.mono-project.com/repo/debian stable-buster main" --package="mono-devel" --key="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
+ynh_exec_warn_less ynh_install_extra_app_dependencies --repo="https://download.mono-project.com/repo/debian stable-buster main" --package="mono-devel" --key="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
 
-ynh_install_extra_app_dependencies --repo="https://apt.sonarr.tv/debian buster main" --package="sonarr" --key="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"
+ynh_exec_warn_less ynh_install_extra_app_dependencies --repo="https://apt.sonarr.tv/debian buster main" --package="sonarr" --key="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"
 
 ynh_install_app_dependencies $pkg_dependencies
 
