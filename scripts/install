@@ -106,7 +106,8 @@ ynh_script_progression --message="Configuring Radarr..." --weight=2
 api_key=$(ynh_string_random --length=32)
 ynh_app_setting_set --app=$app --key=api_key --value=$api_key
 
-mkdir -p "$final_path"
+# Create $final_path and its logs subdirectory
+mkdir -p "$final_path/logs"
 chmod 750 "$final_path"
 
 ynh_add_config --template="../conf/config.xml" --destination="$final_path/config.xml"
