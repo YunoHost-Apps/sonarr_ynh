@@ -11,7 +11,8 @@ Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour
 
 ## Vue d'ensemble
 
-Un gestionnaire de collection de séries pour utilisateurs de Usenet et BitTorrent.
+Sonarr est un PVR pour les utilisateurs Usenet et BitTorrent. Il peut surveiller plusieurs flux RSS pour les nouveaux épisodes de vos émissions préférées et les récupérer, les trier et les renommer. Il peut également être configuré pour mettre à niveau automatiquement la qualité des fichiers déjà téléchargés lorsqu'un format de meilleure qualité devient disponible.
+
 
 **Version incluse :** 3.0.6.1196~ynh1
 
