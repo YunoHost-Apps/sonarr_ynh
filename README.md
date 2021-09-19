@@ -15,7 +15,7 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 
 ## Overview
 
-A series collection manager for Usenet and BitTorrent users.
+A series collection manager for Usenet and BitTorrent users
 
 **Shipped version:** 3.0.6.1196~ynh1
 
