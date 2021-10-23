@@ -37,8 +37,6 @@ final_path=$(ynh_app_setting_get --app=$app --key=final_path)
 #=================================================
 ynh_script_progression --message="Validating restoration parameters..." --weight=1
 
-ynh_webpath_available --domain=$domain --path_url=$path_url \
-	|| ynh_die --message="Path not available: ${domain}${path_url}"
 test ! -d $final_path \
 	|| ynh_die --message="There is already a directory: $final_path "
 
@@ -94,9 +92,9 @@ ynh_multimedia_addaccess $app
 ynh_script_progression --message="Reinstalling dependencies..." --weight=4
 
 # Define and install dependencies
-ynh_exec_warn_less 'ynh_install_extra_app_dependencies --repo="https://download.mono-project.com/repo/debian stable-buster main" --package="mono-devel" --key="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"'
+ynh_exec_warn_less 'ynh_install_extra_app_dependencies --repo="https://download.mono-project.com/repo/debian stable-buster main" --package="mono-devel" --key="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"'
 
-ynh_exec_warn_less 'ynh_install_extra_app_dependencies --repo="https://apt.sonarr.tv/debian buster main" --package="sonarr" --key="http://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"'
+ynh_exec_warn_less 'ynh_install_extra_app_dependencies --repo="https://apt.sonarr.tv/debian buster main" --package="sonarr" --key="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"'
 
 ynh_install_app_dependencies $pkg_dependencies
 
