@@ -5,7 +5,7 @@ It shall NOT be edited by hand.
 
 # Sonarr for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![Working status](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)  
 [![Install Sonarr with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -21,10 +21,9 @@ Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS fee
 **Shipped version:** 3.0.6.1196~ynh2
 
 
-
 ## Screenshots
 
-![](./doc/screenshots/screenshot.jpg)
+![Screenshot of Sonarr](./doc/screenshots/screenshot.jpg)
 
 ## Disclaimers / important information
 
@@ -37,21 +36,22 @@ Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS fee
 
 ## Documentation and resources
 
-* Official app website: https://sonarr.tv
-* Official admin documentation: https://wiki.servarr.com/Sonarr
-* Upstream app code repository: https://github.com/Sonarr/Sonarr
-* YunoHost documentation for this app: https://yunohost.org/app_sonarr
-* Report a bug: https://github.com/YunoHost-Apps/sonarr_ynh/issues
+* Official app website: <https://sonarr.tv>
+* Official admin documentation: <https://wiki.servarr.com/Sonarr>
+* Upstream app code repository: <https://github.com/Sonarr/Sonarr>
+* YunoHost documentation for this app: <https://yunohost.org/app_sonarr>
+* Report a bug: <https://github.com/YunoHost-Apps/sonarr_ynh/issues>
 
 ## Developer info
 
 Please send your pull request to the [testing branch](https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing).
 
 To try the testing branch, please proceed like that.
-```
+
+``` bash
 sudo yunohost app install https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing --debug
 or
 sudo yunohost app upgrade sonarr -u https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing --debug
 ```
 
-**More info regarding app packaging:** https://yunohost.org/packaging_apps
+**More info regarding app packaging:** <https://yunohost.org/packaging_apps>
