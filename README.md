@@ -20,7 +20,6 @@ Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS fee
 
 **Shipped version:** 3.0.6.1196~ynh2
 
-
 ## Screenshots
 
 ![Screenshot of Sonarr](./doc/screenshots/screenshot.jpg)
