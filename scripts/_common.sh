@@ -5,7 +5,7 @@
 #=================================================
 
 # dependencies used by the app
-pkg_dependencies="apt-transport-https dirmngr gnupg ca-certificates mediainfo mono-devel sonarr"
+#REMOVEME? pkg_dependencies="apt-transport-https dirmngr gnupg ca-certificates mediainfo mono-devel sonarr"
 
 #=================================================
 # PERSONAL HELPERS
