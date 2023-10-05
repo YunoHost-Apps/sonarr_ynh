@@ -5,24 +5,25 @@ It shall NOT be edited by hand.
 
 # Sonarr pour YunoHost
 
-[![Niveau d'intégration](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)  
+[![Niveau d’intégration](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![Statut du fonctionnement](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Statut de maintenance](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
+
 [![Installer Sonarr avec YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 
 *[Read this readme in english.](./README.md)*
 
-> *Ce package vous permet d'installer Sonarr rapidement et simplement sur un serveur YunoHost.
-Si vous n'avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l'installer et en profiter.*
+> *Ce package vous permet d’installer Sonarr rapidement et simplement sur un serveur YunoHost.
+Si vous n’avez pas YunoHost, regardez [ici](https://yunohost.org/#/install) pour savoir comment l’installer et en profiter.*
 
-## Vue d'ensemble
+## Vue d’ensemble
 
 Sonarr est un PVR pour les utilisateurs Usenet et BitTorrent. Il peut surveiller plusieurs flux RSS pour les nouveaux épisodes de vos émissions préférées et les récupérer, les trier et les renommer. Il peut également être configuré pour mettre à niveau automatiquement la qualité des fichiers déjà téléchargés lorsqu'un format de meilleure qualité devient disponible.
 
 
 **Version incluse :** 3.0.6.1196~ynh2
 
-## Captures d'écran
+## Captures d’écran
 
-![Capture d'écran de Sonarr](./doc/screenshots/screenshot.jpg)
+![Capture d’écran de Sonarr](./doc/screenshots/screenshot.jpg)
 
 ## Avertissements / informations importantes
 
@@ -35,10 +36,9 @@ Sonarr est un PVR pour les utilisateurs Usenet et BitTorrent. Il peut surveiller
 
 ## Documentations et ressources
 
-* Site officiel de l'app : <https://sonarr.tv>
-* Documentation officielle de l'admin : <https://wiki.servarr.com/Sonarr>
-* Dépôt de code officiel de l'app : <https://github.com/Sonarr/Sonarr>
-* Documentation YunoHost pour cette app : <https://yunohost.org/app_sonarr>
+* Site officiel de l’app : <https://sonarr.tv>
+* Documentation officielle de l’admin : <https://wiki.servarr.com/Sonarr>
+* Dépôt de code officiel de l’app : <https://github.com/Sonarr/Sonarr>
 * Signaler un bug : <https://github.com/YunoHost-Apps/sonarr_ynh/issues>
 
 ## Informations pour les développeurs
@@ -53,4 +53,4 @@ ou
 sudo yunohost app upgrade sonarr -u https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing --debug
 ```
 
-**Plus d'infos sur le packaging d'applications :** <https://yunohost.org/packaging_apps>
+**Plus d’infos sur le packaging d’applications :** <https://yunohost.org/packaging_apps>
