@@ -2,7 +2,7 @@ packaging_format = 2
 
 id = "sonarr"
 name = "Sonarr"
-description.en = "A series collection manager for Usenet and BitTorrent users"
+description.en = "Series collection manager for Usenet and BitTorrent users"
 description.fr = "Gestionnaire de collection de séries pour utilisateurs de Usenet et BitTorrent"
 
 version = "3.0.6.1196~ynh2"
@@ -32,6 +32,10 @@ ram.runtime = "50M"
     [install.path]
     type = "path"
     default = "/sonarr"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "visitors"
 
     [install.admin]
     type = "user"
