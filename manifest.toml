@@ -45,6 +45,8 @@ ram.runtime = "50M"
 
     [resources.install_dir]
 
+    [resources.ports]
+
     [resources.permissions]
     main.url = "/"
     api.url = "/api"
@@ -61,7 +63,9 @@ ram.runtime = "50M"
 
     extras.sonarr.repo = "https://apt.sonarr.tv/debian buster main"
     extras.sonarr.key = "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"
-    extras.sonarr.packages = "sonarr"
+    extras.sonarr.packages_from_raw_bash = """
+    echo "sonarr=$YNH_APP_MANIFEST_VERSION"
+    """
 
     # Dummy source to trigger the auto-updater
     [resources.sources.main]
