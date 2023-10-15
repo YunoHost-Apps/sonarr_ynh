@@ -37,10 +37,8 @@ ram.runtime = "50M"
 
     [install.init_main_permission]
     type = "group"
-    default = "visitors"
-
-    [install.admin]
-    type = "user"
+    default = "admins"
+    help = "This app is only protected by YunoHost's SSO, so do not make it accessible by visitors."
 
 [resources]
     [resources.system_user]
