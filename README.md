@@ -5,7 +5,8 @@ It shall NOT be edited by hand.
 
 # Sonarr for YunoHost
 
-[![Integration level](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![Working status](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)  
+[![Integration level](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![Working status](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Maintenance status](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
+
 [![Install Sonarr with YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 
 *[Lire ce readme en français.](./README_fr.md)*
@@ -38,7 +39,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS fee
 * Official app website: <https://sonarr.tv>
 * Official admin documentation: <https://wiki.servarr.com/Sonarr>
 * Upstream app code repository: <https://github.com/Sonarr/Sonarr>
-* YunoHost documentation for this app: <https://yunohost.org/app_sonarr>
+* YunoHost Store: <https://apps.yunohost.org/app/sonarr>
 * Report a bug: <https://github.com/YunoHost-Apps/sonarr_ynh/issues>
 
 ## Developer info
