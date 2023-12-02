@@ -56,7 +56,7 @@ ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --l
 # If a first Sonarr app was running before installing this one,
 # it may have been stopped by the installation of the dependencies.
 # Let's restart it.
-if [[ $(systemctl list-units -all | grep 'sonarr.service' | grep 'inactive') ]]; then
+if ! systemctl is-active $app.service; then
         ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
 fi
 
