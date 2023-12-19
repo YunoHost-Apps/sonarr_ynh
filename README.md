@@ -39,6 +39,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS fee
 * Official app website: <https://sonarr.tv>
 * Official admin documentation: <https://wiki.servarr.com/Sonarr>
 * Upstream app code repository: <https://github.com/Sonarr/Sonarr>
+* YunoHost Store: <https://apps.yunohost.org/app/sonarr>
 * Report a bug: <https://github.com/YunoHost-Apps/sonarr_ynh/issues>
 
 ## Developer info

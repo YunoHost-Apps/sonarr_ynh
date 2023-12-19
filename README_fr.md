@@ -39,6 +39,7 @@ Sonarr est un PVR pour les utilisateurs Usenet et BitTorrent. Il peut surveiller
 * Site officiel de l’app : <https://sonarr.tv>
 * Documentation officielle de l’admin : <https://wiki.servarr.com/Sonarr>
 * Dépôt de code officiel de l’app : <https://github.com/Sonarr/Sonarr>
+* YunoHost Store: <https://apps.yunohost.org/app/sonarr>
 * Signaler un bug : <https://github.com/YunoHost-Apps/sonarr_ynh/issues>
 
 ## Informations pour les développeurs
