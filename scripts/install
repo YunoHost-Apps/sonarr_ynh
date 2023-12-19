@@ -35,7 +35,7 @@ ynh_app_setting_set --app=$app --key=api_key --value=$api_key
 mkdir -p "$install_dir/logs"
 chmod 750 "$install_dir"
 
-ynh_add_config --template="../conf/config.xml" --destination="$install_dir/config.xml"
+ynh_add_config --template="config.xml" --destination="$install_dir/config.xml"
 
 chmod -R o-rwx "$install_dir"
 chown -R $app:$app "$install_dir"
