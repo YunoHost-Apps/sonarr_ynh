@@ -1,24 +1,22 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
+
+# Generate API key for configuration later
+api_key=$(ynh_string_random --length=32)
+ynh_app_setting_set --app=$app --key=api_key --value=$api_key
+
+# Stop the service automatically created upon installation of the package
+ynh_systemd_action --service_name=sonarr --action="stop"
 
 #=================================================
 # NGINX CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring NGINX web server..." --weight=1
+ynh_script_progression --message="Adding system configurations related to $app..."
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
-
-# Stop the service automatically created upon installation of the package
-ynh_systemd_action --service_name=sonarr --action="stop"
 
 # Create a dedicated systemd config, it will override the one in /lib/systemd/system/sonarr.service
 ynh_add_systemd_config
@@ -27,9 +25,6 @@ ynh_add_systemd_config
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Configuring Radarr..." --weight=2
-
-api_key=$(ynh_string_random --length=32)
-ynh_app_setting_set --app=$app --key=api_key --value=$api_key
 
 # Create $install_dir and its logs subdirectory
 mkdir -p "$install_dir/logs"
@@ -55,7 +50,7 @@ ynh_multimedia_addaccess $app
 #=================================================
 # SETUP LOGROTATE
 #=================================================
-ynh_script_progression --message="Configuring log rotation..." --weight=1
+ynh_script_progression --message="Configuring log rotation..."
 
 # Use logrotate to manage application logfile(s)
 ynh_use_logrotate --logfile="$install_dir/logs/"
@@ -63,7 +58,7 @@ ynh_use_logrotate --logfile="$install_dir/logs/"
 #=================================================
 # INTEGRATE SERVICE IN YUNOHOST
 #=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
+ynh_script_progression --message="Integrating service in YunoHost..."
 
 yunohost service add $app --description="Sonarr daemon" --log="$install_dir/logs/sonarr.txt"
 
@@ -77,9 +72,9 @@ ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --l
 
 # If a first Sonarr app was running before installing this one,
 # it may have been stopped by the installation of the dependencies.
-# Let's restart it.
-if [[ $(systemctl list-units -all | grep 'sonarr.service' | grep 'inactive') ]]; then
-	ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
+# Let's restart it. (hence why we use sonarr and not $app..)
+if ! systemctl -q is-active sonarr; then
+    ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="restart" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
 fi
 
 #=================================================
