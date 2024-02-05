@@ -47,6 +47,7 @@ ram.runtime = "50M"
     [resources.system_user]
 
     [resources.install_dir]
+    dir = "/var/lib/__APP__"
 
     [resources.ports]
 
