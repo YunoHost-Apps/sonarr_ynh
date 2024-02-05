@@ -1,14 +1,49 @@
 #!/bin/bash
 
+#=================================================
+# GENERIC START
+#=================================================
+# IMPORT GENERIC HELPERS
+#=================================================
+
 source _common.sh
 source /usr/share/yunohost/helpers
 
+#=================================================
+# INITIALIZE AND STORE SETTINGS
+#=================================================
+
 # Generate API key for configuration later
 api_key=$(ynh_string_random --length=32)
-ynh_app_setting_set --app=$app --key=api_key --value=$api_key
+ynh_app_setting_set --app=$app --key="api_key" --value="$api_key"
 
 # Stop the service automatically created upon installation of the package
-ynh_systemd_action --service_name=sonarr --action="stop"
+ynh_systemd_action --service_name="sonarr" --action="stop"
+
+#=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring Radarr..." --weight=2
+
+# Create $install_dir and its logs subdirectory
+mkdir -p "/var/log/$app"
+ln -s "/var/log/$app" "$install_dir/logs"
+
+ynh_add_config --template="config.xml" --destination="$install_dir/config.xml"
+
+chmod 750 "$install_dir"
+chmod -R o-rwx "$install_dir"
+chown -R "$app:$app" "$install_dir"
+
+#=================================================
+# YUNOHOST MULTIMEDIA INTEGRATION
+#=================================================
+ynh_script_progression --message="Adding multimedia directories..." --weight=2
+
+# Build YunoHost multimedia directories
+ynh_multimedia_build_main_dir
+# Enable writing into these directories
+ynh_multimedia_addaccess "$app"
 
 #=================================================
 # NGINX CONFIGURATION
@@ -20,47 +55,10 @@ ynh_add_nginx_config
 
 # Create a dedicated systemd config, it will override the one in /lib/systemd/system/sonarr.service
 ynh_add_systemd_config
-
-#=================================================
-# ADD A CONFIGURATION
-#=================================================
-ynh_script_progression --message="Configuring Radarr..." --weight=2
-
-# Create $install_dir and its logs subdirectory
-mkdir -p "$install_dir/logs"
-chmod 750 "$install_dir"
-
-ynh_add_config --template="config.xml" --destination="$install_dir/config.xml"
-
-chmod -R o-rwx "$install_dir"
-chown -R $app:$app "$install_dir"
-
-#=================================================
-# YUNOHOST MULTIMEDIA INTEGRATION
-#=================================================
-ynh_script_progression --message="Adding multimedia directories..." --weight=2
-
-# Build YunoHost multimedia directories
-ynh_multimedia_build_main_dir
-# Enable writing into these directories
-ynh_multimedia_addaccess $app
-
-#=================================================
-# GENERIC FINALIZATIONs
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Configuring log rotation..."
+yunohost service add "$app" --description="Sonarr daemon" --log="/var/log/$app/sonarr.txt"
 
 # Use logrotate to manage application logfile(s)
-ynh_use_logrotate --logfile="$install_dir/logs/"
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..."
-
-yunohost service add $app --description="Sonarr daemon" --log="$install_dir/logs/sonarr.txt"
+ynh_use_logrotate --logfile="/var/log/$app/"
 
 #=================================================
 # START SYSTEMD SERVICE
@@ -68,7 +66,7 @@ yunohost service add $app --description="Sonarr daemon" --log="$install_dir/logs
 ynh_script_progression --message="Starting a systemd service..." --weight=2
 
 # Start a systemd service
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
+ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
 
 # If a first Sonarr app was running before installing this one,
 # it may have been stopped by the installation of the dependencies.
@@ -76,10 +74,6 @@ ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --l
 if ! systemctl -q is-active sonarr; then
     ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="restart" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
 fi
-
-ynh_exec_warn cat "/etc/nginx/conf.d/$domain.d/$app.conf"
-
-ynh_exec_warn cat "$install_dir/config.xml"
 
 #=================================================
 # END OF SCRIPT

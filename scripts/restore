@@ -18,7 +18,7 @@ ynh_script_progression --message="Restoring the app main directory..." --weight=
 ynh_restore_file --origin_path="$install_dir"
 
 chmod -R o-rwx "$install_dir"
-chown -R $app:$app "$install_dir"
+chown -R "$app:$app" "$install_dir"
 
 #=================================================
 # YUNOHOST MULTIMEDIA INTEGRATION
@@ -28,44 +28,42 @@ ynh_script_progression --message="Adding multimedia directories..." --weight=2
 # Build YunoHost multimedia directories
 ynh_multimedia_build_main_dir
 # Enable writing into these directories
-ynh_multimedia_addaccess $app
+ynh_multimedia_addaccess "$app"
 
 #=================================================
-# SPECIFIC RESTORATION
+# RESTORE SYSTEM CONFIGURATIONS
 #=================================================
-# REINSTALL DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Reinstalling dependencies..." --weight=4
+ynh_script_progression --message="Restoring system configurations related to $app..." --weight=1
 
 ynh_restore_file --origin_path="/etc/nginx/conf.d/$domain.d/$app.conf"
 
 ynh_restore_file --origin_path="/etc/systemd/system/$app.service"
-systemctl enable $app.service --quiet
+systemctl enable "$app.service" --quiet
+yunohost service add "$app" --description="Sonarr daemon" --log="/var/log/$app/sonarr.txt"
 
 ynh_restore_file --origin_path="/etc/logrotate.d/$app"
 
-yunohost service add $app --description="Sonarr daemon" --log="$install_dir/logs/sonarr.txt"
-
 #=================================================
-# START SYSTEMD SERVICE
+# RESTORE VARIOUS FILES
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=2
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
-
-# If a first Sonarr app was running before installing this one,
-# it may have been stopped by the installation of the dependencies.
-# Let's restart it.
-if ! systemctl is-active $app.service; then
-        ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
-fi
+ynh_restore_file --origin_path="/var/log/$app/"
 
 #=================================================
 # GENERIC FINALIZATION
 #=================================================
-# RELOAD NGINX
+# RELOAD NGINX AND PHP-FPM OR THE APP SERVICE
 #=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
+ynh_script_progression --message="Reloading NGINX web server and $app's service..." --weight=1
+
+ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
+
+# If a first Sonarr app was running before installing this one,
+# it may have been stopped by the installation of the dependencies.
+# Let's restart it.
+if ! systemctl is-active "$app.service"; then
+    ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
+fi
 
 ynh_systemd_action --service_name=nginx --action=reload
 
