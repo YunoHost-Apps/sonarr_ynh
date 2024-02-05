@@ -77,6 +77,10 @@ if ! systemctl -q is-active sonarr; then
     ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="restart" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
 fi
 
+ynh_exec_warn cat "/etc/nginx/conf.d/$domain.d/$app.conf"
+
+ynh_exec_warn cat "$install_dir/config.xml"
+
 #=================================================
 # END OF SCRIPT
 #=================================================
