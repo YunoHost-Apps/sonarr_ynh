@@ -30,12 +30,10 @@ ynh_change_url_nginx_config
 #=================================================
 # UPDATE CONFIGURATION FILE
 #=================================================
-#REMOVEME? 
-path=$new_path
 
-ynh_exec_warn_less ynh_add_config --template="../conf/config.xml" --destination="$install_dir/config.xml"
+ynh_exec_warn_less ynh_add_config --template="config.xml" --destination="$data_dir/config.xml"
 
-chown $app:$app "$install_dir/config.xml"
+chown "$app:$app" "$data_dir/config.xml"
 
 #=================================================
 # GENERIC FINALISATION
@@ -44,7 +42,8 @@ chown $app:$app "$install_dir/config.xml"
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting Web Server"
+# Start a systemd service
+ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Application started."
 
 #=================================================
 # END OF SCRIPT
