@@ -80,4 +80,5 @@ ram.runtime = "50M"
         "gnupg",
         "ca-certificates",
         "mediainfo",
+        "mono-runtime",
     ]
