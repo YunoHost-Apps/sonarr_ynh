@@ -75,10 +75,8 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = [
-        "apt-transport-https",
-        "dirmngr",
-        "gnupg",
-        "ca-certificates",
-        "mediainfo",
         "mono-runtime",
+        "sqlite3",
+        "dirmngr",
+        "mediainfo",
     ]
