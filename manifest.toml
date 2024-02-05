@@ -44,9 +44,21 @@ ram.runtime = "50M"
     help = "This app is only protected by YunoHost's SSO, so do not make it accessible by visitors."
 
 [resources]
+    [resources.sources.main]
+    amd64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-x64.tar.gz"
+    arm64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-arm64.tar.gz"
+    armhf.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-arm.tar.gz"
+
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset.amd64 = ".*\\.linux-x64.tar.gz"
+    autoupdate.asset.arm64 = ".*\\.linux-arm64.tar.gz"
+    autoupdate.asset.armhf = ".*\\.linux-arm.tar.gz"
+
     [resources.system_user]
 
     [resources.install_dir]
+
+    [resources.data_dir]
     dir = "/var/lib/__APP__"
 
     [resources.ports]
@@ -66,18 +78,3 @@ ram.runtime = "50M"
         "ca-certificates",
         "mediainfo",
     ]
-
-    # extras.mono-devel.repo = "https://download.mono-project.com/repo/debian bullseye main"
-    # extras.mono-devel.key = "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
-    # extras.mono-devel.packages = "mono-devel"
-
-    extras.sonarr.repo = "https://apt.sonarr.tv/debian bullseye main"
-    extras.sonarr.key = "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"
-    extras.sonarr.packages = "sonarr"
-
-    # Dummy source to trigger the auto-updater
-    [resources.sources.main]
-    url = "https://github.com/Sonarr/Sonarr/archive/refs/tags/3.0.10.1567.tar.gz"
-    sha256 = "1fd4129216a1baee66c40ecc6af7d86802a04ffd12ecc5fd0afff1e5469ae99c"
-    prefetch = false
-    autoupdate.strategy = "latest_github_tag"

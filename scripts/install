@@ -17,23 +17,31 @@ source /usr/share/yunohost/helpers
 api_key=$(ynh_string_random --length=32)
 ynh_app_setting_set --app=$app --key="api_key" --value="$api_key"
 
-# Stop the service automatically created upon installation of the package
-ynh_systemd_action --service_name="sonarr" --action="stop"
+#=================================================
+# APP "BUILD" (DEPLOYING SOURCES, VENV, COMPILING ETC)
+#=================================================
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Setting up source files..." --weight=1
+
+# Download, check integrity, uncompress and patch the source from manifest.toml
+ynh_setup_source --dest_dir="$install_dir"
+
+chown -R "$app:$app" "$install_dir"
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
 ynh_script_progression --message="Configuring Radarr..." --weight=2
 
-# Create $install_dir and its logs subdirectory
 mkdir -p "/var/log/$app"
-ln -s "/var/log/$app" "$install_dir/logs"
+ln -s "/var/log/$app" "$data_dir/logs"
 
-ynh_add_config --template="config.xml" --destination="$install_dir/config.xml"
+ynh_add_config --template="config.xml" --destination="$data_dir/config.xml"
 
-chmod 750 "$install_dir"
-chmod -R o-rwx "$install_dir"
-chown -R "$app:$app" "$install_dir"
+chmod 750 "$data_dir"
+chmod -R o-rwx "$data_dir"
+chown -R "$app:$app" "$data_dir"
 
 #=================================================
 # YUNOHOST MULTIMEDIA INTEGRATION
@@ -67,13 +75,6 @@ ynh_script_progression --message="Starting a systemd service..." --weight=2
 
 # Start a systemd service
 ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
-
-# If a first Sonarr app was running before installing this one,
-# it may have been stopped by the installation of the dependencies.
-# Let's restart it. (hence why we use sonarr and not $app..)
-if ! systemctl -q is-active sonarr; then
-    ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="restart" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
-fi
 
 #=================================================
 # END OF SCRIPT
