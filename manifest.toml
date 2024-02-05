@@ -46,8 +46,11 @@ ram.runtime = "50M"
 [resources]
     [resources.sources.main]
     amd64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-x64.tar.gz"
+    amd64.sha256 = "5ef17d1f14f18061072cf45f30162b4d2953561c0d1fa608476a605a6c44d3c5"
     arm64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-arm64.tar.gz"
+    arm64.sha256 = "ebc0bf30cb46cfffbf3c188c519ffce506633a5a865f916dc585aa2914af19af"
     armhf.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-arm.tar.gz"
+    armhf.sha256 = "bc36a6ac9717abbc149b7974770d28b28c2d1b70a8484946fb21b80a3b476fb7"
 
     autoupdate.strategy = "latest_github_release"
     autoupdate.asset.amd64 = ".*\\.linux-x64.tar.gz"
