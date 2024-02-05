@@ -61,11 +61,11 @@ ram.runtime = "50M"
     [resources.apt]
     packages = "apt-transport-https, dirmngr, gnupg, ca-certificates, mediainfo"
 
-    extras.mono-devel.repo = "https://download.mono-project.com/repo/debian stable-buster main"
+    extras.mono-devel.repo = "https://download.mono-project.com/repo/debian bullseye main"
     extras.mono-devel.key = "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
     extras.mono-devel.packages = "mono-devel"
 
-    extras.sonarr.repo = "https://apt.sonarr.tv/debian buster main"
+    extras.sonarr.repo = "https://apt.sonarr.tv/debian bullseye main"
     extras.sonarr.key = "https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"
     extras.sonarr.packages = "sonarr"
 
