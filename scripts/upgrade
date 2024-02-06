@@ -25,7 +25,6 @@ ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
 if [ -d "$data_dir/logs" ]; then
     ynh_secure_remove --file="/var/log/$app"
-    mv "$data_dir/logs" "/var/log/$app"
     ln -s "/var/log/$app" "$data_dir/logs"
 fi
 
