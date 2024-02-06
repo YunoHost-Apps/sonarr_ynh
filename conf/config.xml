@@ -1,5 +1,5 @@
 <Config>
-  <LogLevel>warn</LogLevel>
+  <LogLevel>info</LogLevel>
   <EnableSsl>False</EnableSsl>
   <Port>__PORT__</Port>
   <SslPort>__PORT__</SslPort>
