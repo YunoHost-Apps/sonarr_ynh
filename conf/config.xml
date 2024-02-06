@@ -9,4 +9,10 @@
   <AuthenticationMethod>None</AuthenticationMethod>
   <UpdateMechanism>BuiltIn</UpdateMechanism>
   <Branch>main</Branch>
+  <LaunchBrowser>False</LaunchBrowser>
+  <AnalyticsEnabled>False</AnalyticsEnabled>
+  <InstanceName>Sonarr</InstanceName>
+  <AuthenticationRequired>DisabledForLocalAddresses</AuthenticationRequired>
+  <SslCertPath></SslCertPath>
+  <SslCertPassword></SslCertPassword>
 </Config>
