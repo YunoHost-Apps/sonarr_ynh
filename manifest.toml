@@ -1,0 +1,82 @@
+#:schema https://raw.githubusercontent.com/YunoHost/apps/master/schemas/manifest.v2.schema.json
+
+packaging_format = 2
+
+id = "sonarr"
+name = "Sonarr"
+description.en = "Series collection manager for Usenet and BitTorrent users"
+description.fr = "Gestionnaire de collection de séries pour utilisateurs de Usenet et BitTorrent"
+
+version = "3.0.10.1567~ynh1"
+
+maintainers = ["tituspijean"]
+
+[upstream]
+license = "GPL-3.0-only"
+website = "https://sonarr.tv"
+admindoc = "https://wiki.servarr.com/Sonarr"
+code = "https://github.com/Sonarr/Sonarr"
+
+[integration]
+yunohost = ">= 11.2"
+architectures = "all"
+multi_instance = true
+
+ldap = false
+
+sso = false
+
+disk = "50M"
+ram.build = "50M"
+ram.runtime = "50M"
+
+[install]
+    [install.domain]
+    type = "domain"
+
+    [install.path]
+    type = "path"
+    default = "/sonarr"
+
+    [install.init_main_permission]
+    type = "group"
+    default = "admins"
+    help = "This app is only protected by YunoHost's SSO, so do not make it accessible by visitors."
+
+[resources]
+    [resources.sources.main]
+    amd64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-x64.tar.gz"
+    amd64.sha256 = "5ef17d1f14f18061072cf45f30162b4d2953561c0d1fa608476a605a6c44d3c5"
+    arm64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-arm64.tar.gz"
+    arm64.sha256 = "ebc0bf30cb46cfffbf3c188c519ffce506633a5a865f916dc585aa2914af19af"
+    armhf.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.1047/Sonarr.develop.4.0.1.1047.linux-arm.tar.gz"
+    armhf.sha256 = "bc36a6ac9717abbc149b7974770d28b28c2d1b70a8484946fb21b80a3b476fb7"
+
+    autoupdate.strategy = "latest_github_release"
+    autoupdate.asset.amd64 = ".*\\.linux-x64.tar.gz"
+    autoupdate.asset.arm64 = ".*\\.linux-arm64.tar.gz"
+    autoupdate.asset.armhf = ".*\\.linux-arm.tar.gz"
+
+    [resources.system_user]
+
+    [resources.install_dir]
+
+    [resources.data_dir]
+    dir = "/var/lib/__APP__"
+
+    [resources.ports]
+
+    [resources.permissions]
+    main.url = "/"
+    api.url = "/api"
+    api.allowed = "visitors"
+    api.show_tile = false
+    api.protected = true
+
+    [resources.apt]
+    packages = [
+        "mono-runtime",
+        "sqlite3",
+        "dirmngr",
+        "mediainfo",
+    ]

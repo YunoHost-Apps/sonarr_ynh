@@ -10,138 +10,57 @@ source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# LOAD SETTINGS
-#=================================================
-ynh_script_progression --message="Loading installation settings..." --weight=1
-
-app=$YNH_APP_INSTANCE_NAME
-
-domain=$(ynh_app_setting_get --app=$app --key=domain)
-path_url=$(ynh_app_setting_get --app=$app --key=path)
-admin=$(ynh_app_setting_get --app=$app --key=admin)
-port=$(ynh_app_setting_get --app=$app --key=port)
-final_path=$(ynh_app_setting_get --app=$app --key=final_path)
-api_key=$(ynh_app_setting_get --app=$app --key=api_key)
-
-#=================================================
-# CHECK VERSION
-#=================================================
-
-### This helper will compare the version of the currently installed app and the version of the upstream package.
-### $upgrade_type can have 2 different values
-### - UPGRADE_APP if the upstream app version has changed
-### - UPGRADE_PACKAGE if only the YunoHost package has changed
-### ynh_check_app_version_changed will stop the upgrade if the app is up to date.
-### UPGRADE_APP should be used to upgrade the core app only if there's an upgrade to do.
-upgrade_type=$(ynh_check_app_version_changed)
-
-#=================================================
-# BACKUP BEFORE UPGRADE THEN ACTIVE TRAP
-#=================================================
-ynh_script_progression --message="Backing up the app before upgrading (may take a while)..." --weight=4
-
-# Backup the current version of the app
-ynh_backup_before_upgrade
-ynh_clean_setup () {
-	# Restore it if the upgrade fails
-	ynh_restore_upgradebackup
-}
-# Exit if an error occurs during the execution of the script
-ynh_abort_if_errors
-
-#=================================================
 # STANDARD UPGRADE STEPS
 #=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Stopping a systemd service..." --weight=1
 
-ynh_systemd_action --service_name=$app --action="stop" --log_path="systemd"
+ynh_systemd_action --service_name="$app" --action="stop" --log_path="systemd"
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
-# Create a permission if needed
-if ! ynh_permission_exists --permission="api"; then
-	ynh_permission_create --permission="api" --url="/api" --allowed="visitors" --show_tile="false" --protected="true"
+if [ ! -L "$data_dir/logs" ]; then
+    ynh_secure_remove --file="$data_dir/logs"
+    ln -s "/var/log/$app" "$data_dir/logs"
 fi
 
 #=================================================
-# CREATE DEDICATED USER
+# "REBUILD" THE APP (DEPLOY NEW SOURCES, RERUN NPM BUILD...)
 #=================================================
-ynh_script_progression --message="Making sure dedicated system user exists..." --weight=1
+# DOWNLOAD, CHECK AND UNPACK SOURCE
+#=================================================
+ynh_script_progression --message="Upgrading source files..." --weight=1
 
-# Create a dedicated user (if not existing)
-ynh_system_user_create --username=$app --home_dir="$final_path"
+# Download, check integrity, uncompress and patch the source from manifest.toml
+ynh_setup_source --dest_dir="$install_dir" --full_replace=1
+
+chown -R "$app:$app" "$install_dir"
 
 #=================================================
-# NGINX CONFIGURATION
+# REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading NGINX web server configuration..." --weight=1
+ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
 
 # Create a dedicated NGINX config
 ynh_add_nginx_config
 
-#=================================================
-# UPGRADE DEPENDENCIES
-#=================================================
-ynh_script_progression --message="Upgrading dependencies..." --weight=4
-
-ynh_exec_warn_less ynh_install_extra_app_dependencies --repo="https://download.mono-project.com/repo/debian stable-buster main" --package="mono-devel" --key="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x3FA7E0328081BFF6A14DA29AA6A19B38D3D831EF"
-
-ynh_exec_warn_less ynh_install_extra_app_dependencies --repo="https://apt.sonarr.tv/debian buster main" --package="sonarr" --key="https://keyserver.ubuntu.com/pks/lookup?op=get&search=0x2009837CBFFD68F45BC180471F4F90DE2A9B4BF8"
-
-ynh_install_app_dependencies $pkg_dependencies
-
-#=================================================
-# SPECIFIC UPGRADE
-#=================================================
-# SETUP SYSTEMD
-#=================================================
-ynh_script_progression --message="Upgrading systemd configuration..." --weight=1
-
 # Create a dedicated systemd config
 ynh_add_systemd_config
-
-#=================================================
-# GENERIC FINALIZATION
-#=================================================
-# SETUP LOGROTATE
-#=================================================
-ynh_script_progression --message="Upgrading logrotate configuration..." --weight=1
+yunohost service add "$app" --description="Sonarr daemon" --log="/var/log/$app/sonarr.txt"
 
 # Use logrotate to manage app-specific logfile(s)
-ynh_use_logrotate --non-append --logfile="$final_path/logs"
-
-#=================================================
-# INTEGRATE SERVICE IN YUNOHOST
-#=================================================
-ynh_script_progression --message="Integrating service in YunoHost..." --weight=1
-
-yunohost service add $app --description="Sonarr daemon" --log="$final_path/logs/sonarr.txt"
+ynh_use_logrotate --non-append --logfile="/var/log/$app/"
 
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=2
 
-ynh_systemd_action --service_name=$app --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
-
-# If a first Sonarr app was running before installing this one,
-# it may have been stopped by the installation of the dependencies.
-# Let's restart it.
-if [[ $(systemctl list-units -all | grep 'sonarr.service' | grep 'inactive') ]]; then
-        ynh_exec_fully_quiet ynh_systemd_action --service_name=sonarr --action="start" --log_path="systemd" --line_match="Starting Web Server" --timeout=30
-fi
-
-#=================================================
-# RELOAD NGINX
-#=================================================
-ynh_script_progression --message="Reloading NGINX web server..." --weight=1
-
-ynh_systemd_action --service_name=nginx --action=reload
+ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Application started." --timeout=30
 
 #=================================================
 # END OF SCRIPT

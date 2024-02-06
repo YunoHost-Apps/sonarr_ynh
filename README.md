@@ -19,20 +19,11 @@ If you don't have YunoHost, please consult [the guide](https://yunohost.org/#/in
 Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 
-**Shipped version:** 3.0.6.1196~ynh3
+**Shipped version:** 3.0.10.1567~ynh1
 
 ## Screenshots
 
 ![Screenshot of Sonarr](./doc/screenshots/screenshot.jpg)
-
-## Disclaimers / important information
-
-* Sonarr developper's repository only allows to download the very latest version.
-  * The version displayed here may be different from the one actually installed.
-* Supported architectures are `arm`, `armhf`, `arm64`, and `amd64`
-* Access control is done with YunoHost's permissions system.
-  * API (`domain.tld/path/api`) can be accessed by visitors to allow control by remote clients.
-* The app uses YunoHost's multimedia directories, hence it has write access to users' and shared directories in `/home/yunohost.multimedia`. After installation, you can choose these directories to store your media.
 
 ## Documentation and resources
 
