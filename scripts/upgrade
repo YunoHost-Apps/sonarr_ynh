@@ -56,6 +56,17 @@ yunohost service add "$app" --description="Sonarr daemon" --log="/var/log/$app/s
 ynh_use_logrotate --non-append --logfile="/var/log/$app/"
 
 #=================================================
+# ADD A CONFIGURATION
+#=================================================
+ynh_script_progression --message="Configuring Radarr..." --weight=2
+
+ynh_add_config --template="config.xml" --destination="$data_dir/config.xml"
+
+chmod 750 "$data_dir"
+chmod -R o-rwx "$data_dir"
+chown -R "$app:$app" "$data_dir"
+
+#=================================================
 # START SYSTEMD SERVICE
 #=================================================
 ynh_script_progression --message="Starting a systemd service..." --weight=2
