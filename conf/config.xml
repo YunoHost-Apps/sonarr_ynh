@@ -1,5 +1,5 @@
 <Config>
-  <LogLevel>info</LogLevel>
+  <LogLevel>warn</LogLevel>
   <EnableSsl>False</EnableSsl>
   <Port>__PORT__</Port>
   <SslPort>__PORT__</SslPort>
@@ -9,4 +9,10 @@
   <AuthenticationMethod>None</AuthenticationMethod>
   <UpdateMechanism>BuiltIn</UpdateMechanism>
   <Branch>main</Branch>
+  <LaunchBrowser>False</LaunchBrowser>
+  <AnalyticsEnabled>False</AnalyticsEnabled>
+  <InstanceName>Sonarr</InstanceName>
+  <AuthenticationRequired>DisabledForLocalAddresses</AuthenticationRequired>
+  <SslCertPath></SslCertPath>
+  <SslCertPassword></SslCertPassword>
 </Config>
