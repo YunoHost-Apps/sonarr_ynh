@@ -8,7 +8,7 @@ Group=__APP__
 UMask=0002
 
 Type=simple
-ExecStart=/usr/bin/mono --debug /usr/lib/sonarr/bin/Sonarr.exe -nobrowser -data=/var/lib/__APP__
+ExecStart=__INSTALL_DIR__/Sonarr -nobrowser -data=__DATA_DIR__
 TimeoutStopSec=20
 KillMode=process
 Restart=on-failure
