@@ -38,11 +38,6 @@ ram.runtime = "50M"
     type = "path"
     default = "/sonarr"
 
-    [install.init_main_permission]
-    type = "group"
-    default = "admins"
-    help = "This app is only protected by YunoHost's SSO, so do not make it accessible by visitors."
-
 [resources]
     [resources.sources.main]
     amd64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.1.929/Sonarr.main.4.0.1.929.linux-x64.tar.gz"
@@ -68,6 +63,7 @@ ram.runtime = "50M"
 
     [resources.permissions]
     main.url = "/"
+    main.allowed = "admins"
     api.url = "/api"
     api.allowed = "visitors"
     api.show_tile = false
