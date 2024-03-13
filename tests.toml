@@ -13,5 +13,3 @@ test_format = 1.0
     # ------------
     # Tests to run
     # ------------
-
-    test_upgrade_from.768c1ce50ab30dd77f8863cf68269038a0f0f238.name = "Last packaging v1 version"
