@@ -71,7 +71,6 @@ ram.runtime = "50M"
 
     [resources.apt]
     packages = [
-        "mono-runtime",
         "sqlite3",
         "dirmngr",
         "mediainfo",
