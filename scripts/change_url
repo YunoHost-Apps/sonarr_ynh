@@ -31,7 +31,10 @@ ynh_change_url_nginx_config
 # UPDATE CONFIGURATION FILE
 #=================================================
 
-ynh_exec_warn_less ynh_add_config --template="config.xml" --destination="$data_dir/config.xml"
+# Add newline at end of file if required
+sed -i -e '$a\' "$data_dir/config.xml"
+
+ynh_add_config --template="config.xml" --destination="$data_dir/config.xml"
 
 chown "$app:$app" "$data_dir/config.xml"
 
