@@ -8,7 +8,7 @@ Group=__APP__
 UMask=0002
 
 Type=simple
-ExecStart=/usr/bin/mono --debug /usr/lib/sonarr/bin/Sonarr.exe -nobrowser -data=/var/lib/__APP__
+ExecStart=__INSTALL_DIR__/Sonarr -nobrowser -data=__DATA_DIR__
 TimeoutStopSec=20
 KillMode=process
 Restart=on-failure
@@ -34,7 +34,8 @@ ProtectKernelModules=yes
 ProtectKernelTunables=yes
 LockPersonality=yes
 SystemCallArchitectures=native
-SystemCallFilter=~@clock @debug @module @mount @obsolete @reboot @setuid @swap @cpu-emulation @privileged
+# Removing @privileged to allow self-update
+SystemCallFilter=~@clock @debug @module @mount @obsolete @reboot @setuid @swap @cpu-emulation
 
 # Denying access to capabilities that should not be relevant for webapps
 # Doc: https://man7.org/linux/man-pages/man7/capabilities.7.html
