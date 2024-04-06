@@ -32,7 +32,9 @@ ynh_change_url_nginx_config
 #=================================================
 
 # Add newline at end of file if required
-sed -i -e '$a\' "$data_dir/config.xml"
+if [ -e "$data_dir/config.xml" ]; then
+    sed -i -e '$a\' "$data_dir/config.xml"
+fi
 
 ynh_add_config --template="config.xml" --destination="$data_dir/config.xml"
 
