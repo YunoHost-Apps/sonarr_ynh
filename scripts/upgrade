@@ -58,7 +58,7 @@ ynh_use_logrotate --non-append --logfile="/var/log/$app/"
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring Radarr..." --weight=2
+ynh_script_progression --message="Configuring Sonarr..." --weight=2
 
 # Add newline at end of file if required
 if [ -e "$data_dir/config.xml" ]; then
