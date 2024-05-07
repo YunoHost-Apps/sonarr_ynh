@@ -3,7 +3,7 @@
 请勿手动编辑。
 -->
 
-# YunoHost 的 Sonarr
+# YunoHost 上的 Sonarr
 
 [![集成程度](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![工作状态](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![维护状态](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
 
@@ -19,7 +19,7 @@
 Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 
-**分发版本：** 4.0.4.1491~ynh1
+**分发版本：** 4.0.4.1491~ynh2
 
 ## 截图
 

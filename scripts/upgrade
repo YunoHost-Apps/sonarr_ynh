@@ -23,6 +23,15 @@ ynh_systemd_action --service_name="$app" --action="stop" --log_path="systemd"
 #=================================================
 ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
 
+# Fixes specific to packaging v2 migration
+if ynh_compare_current_package_version --comparison le --version 3.0.6.1196~ynh3
+then
+    # In packaging v1, final_path=/var/lib/$app but actually held the data. No data_dir was defined
+    # Upon migration, the core moves /var/lib/$app to /var/www/$app, so let's move it to the data_dir
+    ynh_print_warn --message="Fix manivest v2 migration: moving contents of $install_dir to $data_dir... (this may take a while)"
+    mv $install_dir/* $data_dir
+fi
+
 if [ ! -L "$data_dir/logs" ]; then
     ynh_secure_remove --file="$data_dir/logs"
     ln -s "/var/log/$app" "$data_dir/logs"
