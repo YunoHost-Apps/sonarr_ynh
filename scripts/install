@@ -32,7 +32,7 @@ chown -R "$app:$app" "$install_dir"
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring Radarr..." --weight=2
+ynh_script_progression --message="Configuring Sonarr..." --weight=2
 
 mkdir -p "/var/log/$app"
 ln -s "/var/log/$app" "$data_dir/logs"
