@@ -5,7 +5,7 @@ NON debe editarse manualmente.
 
 # Sonarr para YunoHost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
+[![Nivel de integración](https://dash.yunohost.org/integration/sonarr.svg)](https://ci-apps.yunohost.org/ci/apps/sonarr/) ![Estado de funcionamento](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Estado de mantemento](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
 
 [![Instalar Sonarr con YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 

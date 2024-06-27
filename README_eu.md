@@ -5,7 +5,7 @@ EZ editatu eskuz.
 
 # Sonarr YunoHost-erako
 
-[![Integrazio maila](https://dash.yunohost.org/integration/sonarr.svg)](https://dash.yunohost.org/appci/app/sonarr) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
+[![Integrazio maila](https://dash.yunohost.org/integration/sonarr.svg)](https://ci-apps.yunohost.org/ci/apps/sonarr/) ![Funtzionamendu egoera](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Mantentze egoera](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
 
 [![Instalatu Sonarr YunoHost-ekin](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 
