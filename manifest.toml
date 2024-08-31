@@ -18,7 +18,8 @@ admindoc = "https://wiki.servarr.com/Sonarr"
 code = "https://github.com/Sonarr/Sonarr"
 
 [integration]
-yunohost = ">= 11.2"
+yunohost = ">= 11.2.18"
+helpers_version = "2.1"
 architectures = "all"
 multi_instance = true
 

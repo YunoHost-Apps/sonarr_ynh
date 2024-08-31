@@ -1,39 +1,31 @@
 #!/bin/bash
 
-#=================================================
-# GENERIC START
-#=================================================
-# IMPORT GENERIC HELPERS
-#=================================================
-
 source _common.sh
 source /usr/share/yunohost/helpers
 
 #=================================================
-# STANDARD UPGRADE STEPS
-#=================================================
 # STOP SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Stopping a systemd service..." --weight=1
+ynh_script_progression "Stopping $app's systemd service..."
 
-ynh_systemd_action --service_name="$app" --action="stop" --log_path="systemd"
+ynh_systemctl --service="$app" --action="stop" --log_path="systemd"
 
 #=================================================
 # ENSURE DOWNWARD COMPATIBILITY
 #=================================================
-ynh_script_progression --message="Ensuring downward compatibility..." --weight=1
+ynh_script_progression "Ensuring downward compatibility..."
 
 # Fixes specific to packaging v2 migration
-if ynh_compare_current_package_version --comparison le --version 3.0.6.1196~ynh3
+if ynh_app_upgrading_from_version_before_or_equal_to 3.0.6.1196~ynh3
 then
     # In packaging v1, final_path=/var/lib/$app but actually held the data. No data_dir was defined
     # Upon migration, the core moves /var/lib/$app to /var/www/$app, so let's move it to the data_dir
-    ynh_print_warn --message="Fix manivest v2 migration: moving contents of $install_dir to $data_dir... (this may take a while)"
+    ynh_print_warn "Fix manivest v2 migration: moving contents of $install_dir to $data_dir... (this may take a while)"
     mv $install_dir/* $data_dir
 fi
 
 if [ ! -L "$data_dir/logs" ]; then
-    ynh_secure_remove --file="$data_dir/logs"
+    ynh_safe_rm "$data_dir/logs"
     ln -s "/var/log/$app" "$data_dir/logs"
 fi
 
@@ -42,39 +34,38 @@ fi
 #=================================================
 # DOWNLOAD, CHECK AND UNPACK SOURCE
 #=================================================
-ynh_script_progression --message="Upgrading source files..." --weight=1
+ynh_script_progression "Upgrading source files..."
 
 # Download, check integrity, uncompress and patch the source from manifest.toml
-ynh_setup_source --dest_dir="$install_dir" --full_replace=1
+ynh_setup_source --dest_dir="$install_dir" --full_replace
 
-chown -R "$app:$app" "$install_dir"
-
+#REMOVEME? Assuming the install dir is setup using ynh_setup_source, the proper chmod/chowns are now already applied and it shouldn't be necessary to tweak perms | chown -R "$app:$app" "$install_dir"
 #=================================================
 # REAPPLY SYSTEM CONFIGURATIONS
 #=================================================
-ynh_script_progression --message="Upgrading system configurations related to $app..." --weight=1
+ynh_script_progression "Upgrading system configurations related to $app..."
 
 # Create a dedicated NGINX config
-ynh_add_nginx_config
+ynh_config_add_nginx
 
 # Create a dedicated systemd config
-ynh_add_systemd_config
+ynh_config_add_systemd
 yunohost service add "$app" --description="Sonarr daemon" --log="/var/log/$app/sonarr.txt"
 
 # Use logrotate to manage app-specific logfile(s)
-ynh_use_logrotate --non-append --logfile="/var/log/$app/"
+ynh_config_add_logrotate "/var/log/$app/"
 
 #=================================================
 # ADD A CONFIGURATION
 #=================================================
-ynh_script_progression --message="Configuring Sonarr..." --weight=2
+ynh_script_progression "Configuring Sonarr..."
 
 # Add newline at end of file if required
 if [ -e "$data_dir/config.xml" ]; then
     sed -i -e '$a\' "$data_dir/config.xml"
 fi
 
-ynh_add_config --template="config.xml" --destination="$data_dir/config.xml"
+ynh_config_add --template="config.xml" --destination="$data_dir/config.xml"
 
 chmod 750 "$data_dir"
 chmod -R o-rwx "$data_dir"
@@ -83,12 +74,12 @@ chown -R "$app:$app" "$data_dir"
 #=================================================
 # START SYSTEMD SERVICE
 #=================================================
-ynh_script_progression --message="Starting a systemd service..." --weight=2
+ynh_script_progression "Starting $app's systemd service..."
 
-ynh_systemd_action --service_name="$app" --action="start" --log_path="systemd" --line_match="Application started." --timeout=30
+ynh_systemctl --service="$app" --action="start" --log_path="systemd" --wait_until="Application started." --timeout=30
 
 #=================================================
 # END OF SCRIPT
 #=================================================
 
-ynh_script_progression --message="Upgrade of $app completed" --last
+ynh_script_progression "Upgrade of $app completed"
