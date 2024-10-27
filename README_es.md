@@ -19,7 +19,7 @@ No se debe editar a mano.
 Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 
-**Versión actual:** 4.0.9.2244~ynh1
+**Versión actual:** 4.0.10.2544~ynh1
 
 ## Capturas
 
@@ -35,7 +35,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS fee
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
