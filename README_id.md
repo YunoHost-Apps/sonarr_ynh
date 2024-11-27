@@ -5,7 +5,9 @@ Ini TIDAK boleh diedit dengan tangan.
 
 # Sonarr untuk YunoHost
 
-[![Tingkat integrasi](https://dash.yunohost.org/integration/sonarr.svg)](https://ci-apps.yunohost.org/ci/apps/sonarr/) ![Status kerja](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Status pemeliharaan](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
+[![Tingkat integrasi](https://apps.yunohost.org/badge/integration/sonarr)](https://ci-apps.yunohost.org/ci/apps/sonarr/)
+![Status kerja](https://apps.yunohost.org/badge/state/sonarr)
+![Status pemeliharaan](https://apps.yunohost.org/badge/maintained/sonarr)
 
 [![Pasang Sonarr dengan YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 
@@ -19,7 +21,7 @@ Ini TIDAK boleh diedit dengan tangan.
 Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 
-**Versi terkirim:** 4.0.9.2244~ynh1
+**Versi terkirim:** 4.0.11.2680~ynh1
 
 ## Tangkapan Layar
 
