@@ -5,7 +5,9 @@ No se debe editar a mano.
 
 # Sonarr para Yunohost
 
-[![Nivel de integración](https://dash.yunohost.org/integration/sonarr.svg)](https://ci-apps.yunohost.org/ci/apps/sonarr/) ![Estado funcional](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Estado En Mantención](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
+[![Nivel de integración](https://apps.yunohost.org/badge/integration/sonarr)](https://ci-apps.yunohost.org/ci/apps/sonarr/)
+![Estado funcional](https://apps.yunohost.org/badge/state/sonarr)
+![Estado En Mantención](https://apps.yunohost.org/badge/maintained/sonarr)
 
 [![Instalar Sonarr con Yunhost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 
@@ -19,7 +21,7 @@ No se debe editar a mano.
 Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 
-**Versión actual:** 4.0.8.1874~ynh1
+**Versión actual:** 4.0.11.2680~ynh1
 
 ## Capturas
 
@@ -35,7 +37,7 @@ Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS fee
 
 ## Información para desarrolladores
 
-Por favor enviar sus correcciones a la [`branch testing`](https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing
+Por favor enviar sus correcciones a la [rama `testing`](https://github.com/YunoHost-Apps/sonarr_ynh/tree/testing).
 
 Para probar la rama `testing`, sigue asÍ:
 
