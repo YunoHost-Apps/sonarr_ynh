@@ -5,7 +5,9 @@
 
 # Sonarr для YunoHost
 
-[![Уровень интеграции](https://dash.yunohost.org/integration/sonarr.svg)](https://ci-apps.yunohost.org/ci/apps/sonarr/) ![Состояние работы](https://ci-apps.yunohost.org/ci/badges/sonarr.status.svg) ![Состояние сопровождения](https://ci-apps.yunohost.org/ci/badges/sonarr.maintain.svg)
+[![Уровень интеграции](https://apps.yunohost.org/badge/integration/sonarr)](https://ci-apps.yunohost.org/ci/apps/sonarr/)
+![Состояние работы](https://apps.yunohost.org/badge/state/sonarr)
+![Состояние сопровождения](https://apps.yunohost.org/badge/maintained/sonarr)
 
 [![Установите Sonarr с YunoHost](https://install-app.yunohost.org/install-with-yunohost.svg)](https://install-app.yunohost.org/?app=sonarr)
 
@@ -19,7 +21,7 @@
 Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 
-**Поставляемая версия:** 4.0.9.2244~ynh1
+**Поставляемая версия:** 4.0.11.2680~ynh1
 
 ## Снимки экрана
 

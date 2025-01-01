@@ -7,7 +7,7 @@ name = "Sonarr"
 description.en = "Series collection manager for Usenet and BitTorrent users"
 description.fr = "Gestionnaire de collection de séries pour utilisateurs de Usenet et BitTorrent"
 
-version = "4.0.9.2244~ynh1"
+version = "4.0.11.2680~ynh1"
 
 maintainers = ["tituspijean"]
 
@@ -40,12 +40,12 @@ ram.runtime = "50M"
 
 [resources]
     [resources.sources.main]
-    amd64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.9.2244/Sonarr.main.4.0.9.2244.linux-x64.tar.gz"
-    amd64.sha256 = "0bad4b09e61c90ee3a13f5a6fbae03c964b82c19789a690516663b14b75f15b0"
-    arm64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.9.2244/Sonarr.main.4.0.9.2244.linux-arm64.tar.gz"
-    arm64.sha256 = "04a6b5b24fde70441727ee131ce1db91bbab80be7f70167bfea6444d12f1a265"
-    armhf.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.9.2244/Sonarr.main.4.0.9.2244.linux-arm.tar.gz"
-    armhf.sha256 = "71b6d9d99e2937ebf5d35f6b05731c7bca7ee270014d09d0547a416cf67085b8"
+    amd64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.11.2680/Sonarr.main.4.0.11.2680.linux-x64.tar.gz"
+    amd64.sha256 = "f725097f0a626034b0d2c781789831079bee2913941156c2028c162252020883"
+    arm64.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.11.2680/Sonarr.main.4.0.11.2680.linux-arm64.tar.gz"
+    arm64.sha256 = "85871a87b0e997308fff634e92ccb810f937b9c8c527995dd14db9f9c49e624b"
+    armhf.url = "https://github.com/Sonarr/Sonarr/releases/download/v4.0.11.2680/Sonarr.main.4.0.11.2680.linux-arm.tar.gz"
+    armhf.sha256 = "8237e8d69b627e0e5a4e72a4f107effafb62d535c01b36198e67c585405fe578"
 
     autoupdate.strategy = "latest_github_release"
     autoupdate.asset.amd64 = ".*\\.linux-x64.tar.gz"
