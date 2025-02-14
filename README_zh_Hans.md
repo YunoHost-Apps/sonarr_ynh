@@ -21,7 +21,7 @@
 Sonarr is a PVR for Usenet and BitTorrent users. It can monitor multiple RSS feeds for new episodes of your favorite shows and will grab, sort and rename them. It can also be configured to automatically upgrade the quality of files already downloaded when a better quality format becomes available.
 
 
-**分发版本：** 4.0.12.2823~ynh1
+**分发版本：** 4.0.13.2932~ynh1
 
 ## 截图
 
