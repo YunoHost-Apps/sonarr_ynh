@@ -58,8 +58,6 @@ ram.runtime = "50M"
 
     [resources.data_dir]
 
-    [resources.ports]
-
     [resources.permissions]
     main.url = "/"
     main.allowed = "admins"
@@ -67,6 +65,8 @@ ram.runtime = "50M"
     api.allowed = "visitors"
     api.show_tile = false
     api.protected = true
+
+    [resources.ports]
 
     [resources.apt]
     packages = [
